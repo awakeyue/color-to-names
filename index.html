@@ -4,10 +4,64 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>color names</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      #app {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .text {
+        font-weight: bold;
+        font-size: 20px;
+        margin-bottom: 30px;
+      }
+    </style>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/index.ts"></script>
+    <div id="app">
+      <div class="text" id="zhName"></div>
+      <div class="text" id="enName"></div>
+      <div class="text" id="hex"></div>
+
+      <input type="color" id="colorSelecter" />
+    </div>
+    <script type="module">
+      import { colorToNames, isDarkColor, setConfig } from "/src/index.ts";
+      // setConfig({
+      //   colorJson: [
+      //     ['#ff0000', 'red', '红色'],
+      //     ['#00ff00', 'green', '绿色'],
+      //     ['#0000ff', 'blue', '蓝色'],
+      //     ['#FFFFFF', 'white', '白色'],
+      //     ['#000000', 'black', '黑色'],
+      //   ],
+      //   deltaEFormula: 1994
+      // })
+
+      const appEl = document.getElementById("app");
+      const inputEl = document.getElementById("colorSelecter");
+      const zhNameEl = document.getElementById("zhName");
+      const enNameEl = document.getElementById("enName");
+      const hexEl = document.getElementById("hex");
+
+      inputEl.addEventListener("input", e => {
+        const hexColor = e.target.value;
+        const colorNames = colorToNames(hexColor);
+        appEl.style.backgroundColor = hexColor;
+        appEl.style.color = isDarkColor(hexColor) ? "#fff" : "#000";
+        hexEl.innerText = colorNames[0];
+        zhNameEl.innerText = colorNames[2];
+        enNameEl.innerText = colorNames[1];
+      });
+      console.log(colorToNames("#FF0000"));
+    </script>
   </body>
 </html>
