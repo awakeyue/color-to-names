@@ -1,6 +1,6 @@
 # color-to-names
 
-只需要根据一个hex或rgb颜色值，就可以将找出其对应的中英文颜色名，使用DeltaE算法计算色差，更符合人眼感知
+只需要输入一个十六进制或RGB颜色值，就可以找出与它最接近的中英文颜色名。使用DeltaE算法计算颜色差异，这种方法更符合人眼对色彩的感知。
 
 ## 特点
 
@@ -26,14 +26,13 @@ import { colorToNames } from 'color-to-names'
 
 colorToNames("#2A52BE") // return ["#2A52BE", "Cerulean blue", "蔚蓝",]
 colorToNames("#B22222") // return ["#B22222", "Fire Brick", "砖红色",]
-
+colorToNames("rgb(118, 50, 50)") // return ['#800020', 'Burgundy', '勃艮第酒红']
 ```
 
 ### 使用自定义颜色库
 
 默认使用的是维基百科的颜色库，如需自定义，则使用`setConfig`方法。
 你也可以添加更多的语言支持，只需要符合如下的颜色格式，其中数组第一项必须是hex色值，其他项任意，可以增加更多的项
-
 
 ```ts
 import { setConfig } from 'color-to-names'
