@@ -27,13 +27,14 @@
   </head>
   <body>
     <div id="app">
+      <h1 id="title">请选择颜色并查看效果</h1>
       <div class="text" id="zhName"></div>
       <div class="text" id="enName"></div>
       <div class="text" id="hex"></div>
 
       <input type="color" id="colorSelecter" />
     </div>
-    <script src="./dist/color-to-names.iife.js"></script>
+    <script src="../dist/color-to-names.iife.js"></script>
     <script>
       const { colorToNames: c2names, setConfig, isDarkColor } = colorToNames
       // setConfig({
@@ -48,6 +49,8 @@
       // })
 
       const appEl = document.getElementById("app");
+      const titleEl = document.getElementById("title");
+
       const inputEl = document.getElementById("colorSelecter");
       const zhNameEl = document.getElementById("zhName");
       const enNameEl = document.getElementById("enName");
@@ -56,13 +59,17 @@
       inputEl.addEventListener("input", e => {
         const hexColor = e.target.value;
         const colorNames = c2names(hexColor);
+        titleEl.style.display = 'none'
         appEl.style.backgroundColor = hexColor;
         appEl.style.color = isDarkColor(hexColor) ? "#fff" : "#000";
         hexEl.innerText = colorNames[0];
         zhNameEl.innerText = colorNames[2];
         enNameEl.innerText = colorNames[1];
+        console.log(
+          `%cColorName：${colorNames[1]} ${colorNames[2]}`,
+          `background:${hexColor};color:${isDarkColor(hexColor) ? "#fff" : "#000"};padding: 10px;font-size:16px;border-radius: 10px;`
+        )
       });
-      console.log(c2names("#FF0000"));
     </script>
   </body>
 </html>
