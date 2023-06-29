@@ -1,7 +1,7 @@
 {
   "name": "color-to-names",
   "private": false,
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Convert hex format color to the most similar color name, support Chinese/English.",
   "main": "./dist/color-to-names.cjs",
   "module": "./dist/color-to-names.mjs",
