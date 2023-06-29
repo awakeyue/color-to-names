@@ -1,6 +1,6 @@
 {
   "name": "color-to-names",
-  "private": true,
+  "private": false,
   "version": "1.0.0",
   "description": "Convert hex format color to the most similar color name, support Chinese/English.",
   "main": "./dist/color-to-names.cjs",
