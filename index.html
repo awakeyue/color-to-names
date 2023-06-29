@@ -33,8 +33,9 @@
 
       <input type="color" id="colorSelecter" />
     </div>
-    <script type="module">
-      import { colorToNames, isDarkColor, setConfig } from "/src/index.ts";
+    <script src="./dist/color-to-names.iife.js"></script>
+    <script>
+      const { colorToNames: c2names, setConfig, isDarkColor } = colorToNames
       // setConfig({
       //   colorJson: [
       //     ['#ff0000', 'red', '红色'],
@@ -54,14 +55,14 @@
 
       inputEl.addEventListener("input", e => {
         const hexColor = e.target.value;
-        const colorNames = colorToNames(hexColor);
+        const colorNames = c2names(hexColor);
         appEl.style.backgroundColor = hexColor;
         appEl.style.color = isDarkColor(hexColor) ? "#fff" : "#000";
         hexEl.innerText = colorNames[0];
         zhNameEl.innerText = colorNames[2];
         enNameEl.innerText = colorNames[1];
       });
-      console.log(colorToNames("#FF0000"));
+      console.log(c2names("#FF0000"));
     </script>
   </body>
 </html>
